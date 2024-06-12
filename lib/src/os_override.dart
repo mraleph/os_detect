@@ -63,7 +63,8 @@ final class OperatingSystem {
   /// from known platform specific libraries,
   /// but can be overridden using functionality from the
   /// `osid_override.dart` library.
-  @pragma('vm:try-inline')
+  @pragma('vm:prefer-inline')
+  @pragma('dart2js:prefer-inline')
   static OperatingSystem get current =>
       Zone.current[#_os] as OperatingSystem? ?? platformOS;
 
@@ -91,6 +92,7 @@ final class OperatingSystem {
   // That can avoid retaining *all* the subclasses of `OS`.
   @visibleForTesting
   @pragma('vm:prefer-inline')
+  @pragma('dart2js:prefer-inline')
   OperatingSystem(String id, String version)
       : this._(
             id == linuxId
